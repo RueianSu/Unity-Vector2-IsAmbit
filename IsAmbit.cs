@@ -1,6 +1,11 @@
-# Unity-Vector2-IsAmbit
-Vector2 是否在範圍內
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
+public class IsAmbit : MonoBehaviour
+{
     public bool GetAmbit(Vector2 InputLatitudeLongitude, Vector2[] Poi)
     {
         double[] LocationPoiFloat = new double[Poi.Length];
@@ -18,3 +23,4 @@ Vector2 是否在範圍內
         }
         return (ii * -1 >= Poi.Length || ii >= Poi.Length);
     }
+}
