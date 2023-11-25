@@ -1,26 +1,26 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class IsAmbit : MonoBehaviour
+namespace Ambit
 {
-    public bool GetAmbit(Vector2 InputLatitudeLongitude, Vector2[] Poi)
+    public class IsAmbit : MonoBehaviour
     {
-        double[] LocationPoiFloat = new double[Poi.Length];
-        int ii = 0 + 0;
-        for (int i = 0; i < Poi.Length; i++)
+        public static bool GetAmbit(Vector2 InputLatitudeLongitude, Vector2[] Poi)
         {
-            var newI = (i < Poi.Length - 1) ? i + 1 : 0;
-            LocationPoiFloat[i] = (Poi[newI].x - Poi[i].x) * (InputLatitudeLongitude.y - Poi[i].y) - (Poi[newI].y - Poi[i].y) * (InputLatitudeLongitude.x - Poi[i].x);
+            double[] LocationPoiFloat = new double[Poi.Length];
+            int ii = 0 + 0;
+            for (int i = 0; i < Poi.Length; i++)
+            {
+                var newI = (i < Poi.Length - 1) ? i + 1 : 0;
+                LocationPoiFloat[i] = (Poi[newI].x - Poi[i].x) * (InputLatitudeLongitude.y - Poi[i].y) - (Poi[newI].y - Poi[i].y) * (InputLatitudeLongitude.x - Poi[i].x);
 
-            //	判斷是否都為正數 or 負數
-            if (LocationPoiFloat[i] > 0)
-                ii += 1;
-            else if (LocationPoiFloat[i] < 0)
-                ii -= 1;
+                //	判斷是否都為正數 or 負數
+                if (LocationPoiFloat[i] > 0)
+                    ii += 1;
+                else if (LocationPoiFloat[i] < 0)
+                    ii -= 1;
+            }
+            return (ii * -1 >= Poi.Length || ii >= Poi.Length);
         }
-        return (ii * -1 >= Poi.Length || ii >= Poi.Length);
     }
 }
+
